@@ -1,6 +1,6 @@
 import requests, os, sys
 
-# Get user inputs
+# Parse args
 if len(sys.argv) == 0:
     print("Usage: python covers.py [manga_id] [locale]")
     exit()
@@ -14,9 +14,11 @@ if len(sys.argv) == 2:
 else:
     print("No locale specified, downloading covers for all locales")
 
+# Initialize variables
 offset = 0
 total = 100
 
+# Start
 while offset>total:
     # Make the API request
     url = f'https://api.mangadex.org/cover?limit=100&manga[]={manga}&order[volume]=asc&offset={offset}{"&locale[]=" + locale if locale is not None else ""}'
