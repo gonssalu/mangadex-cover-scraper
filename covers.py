@@ -19,7 +19,7 @@ offset = 0
 total = 100
 
 # Start
-while offset>total:
+while offset<total:
     # Make the API request
     url = f'https://api.mangadex.org/cover?limit=100&manga[]={manga}&order[volume]=asc&offset={offset}{"&locale[]=" + locale if locale is not None else ""}'
     headers = {'accept': 'application/json'}
