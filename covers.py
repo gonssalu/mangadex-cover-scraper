@@ -1,13 +1,21 @@
-import requests
-import os
-import json
+import requests, os, sys
 
 # Get user inputs
-limit = int(input("Enter the limit: "))
-manga = input("Enter the manga ID: ")
+if len(sys.argv) == 0:
+    print("Usage: python covers.py [manga_id] [locale]")
+    exit()
+
+manga = sys.argv[0]
+print("Manga ID: " + manga)
+
+if len(sys.argv) == 2:
+    locale = sys.argv[1].lower()
+    print("Locale: " + locale)
+else:
+    print("No locale specified, downloading covers for all locales")
 
 # Make the API request
-url = f'https://api.mangadex.org/cover?limit={limit}&manga[]={manga}&order[volume]=asc'
+url = f'https://api.mangadex.org/cover?limit=100&manga[]={manga}&order[volume]=asc{"&locale[]=" + locale if locale is not None else ""}'
 headers = {'accept': 'application/json'}
 response = requests.get(url, headers=headers)
 
