@@ -1,15 +1,15 @@
 import requests, os, sys
 
 # Parse args
-if len(sys.argv) == 0:
+if len(sys.argv) == 1:
     print("Usage: python covers.py [manga_id] [locale]")
     exit()
 
-manga = sys.argv[0]
+manga = sys.argv[1]
 print("Manga ID: " + manga)
 
-if len(sys.argv) == 2:
-    locale = sys.argv[1].lower()
+if len(sys.argv) == 3:
+    locale = sys.argv[2].lower()
     print("Locale: " + locale)
 else:
     print("No locale specified, downloading covers for all locales")
