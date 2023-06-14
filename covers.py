@@ -8,6 +8,7 @@ if len(sys.argv) == 1:
 manga = sys.argv[1]
 print("Manga ID: " + manga)
 
+locale = None
 if len(sys.argv) == 3:
     locale = sys.argv[2].lower()
     print("Locale: " + locale)
@@ -21,7 +22,7 @@ total = 100
 # Start
 while offset<total:
     # Make the API request
-    url = f'https://api.mangadex.org/cover?limit=100&manga[]={manga}&order[volume]=asc&offset={offset}{"&locale[]=" + locale if locale is not None else ""}'
+    url = f'https://api.mangadex.org/cover?limit=100&manga[]={manga}&order[volume]=asc&offset={offset}{"&locales[]=" + locale if locale is not None else ""}'
     headers = {'accept': 'application/json'}
     response = requests.get(url, headers=headers)
 
